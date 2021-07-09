@@ -1,0 +1,9 @@
+branches:
+  only:
+    - main
+script:
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker build -t dskyiocom/renew-letsencrypt .
+  - docker push dskyiocom/renew-letsencrypt
+services:
+  - docker
